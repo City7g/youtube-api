@@ -1,4 +1,6 @@
 # youtube-vue-2
+# email - v@gmail.com
+# password - 123456
 
 ## Project setup
 ```

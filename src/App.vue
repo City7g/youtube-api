@@ -1,32 +1,43 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Header v-if="$route.path !== '/login'" />
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Header from "@/components/Header"
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  components: {
+    Header
+  },
+  mounted() {
+    const uid = this.$store.dispatch('getUid')
+    if(uid) {
+      this.$store.dispatch('loadFavorites')
     }
   }
+}
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #FAFAFA;
+  font-family: "Roboto";
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+ul {
+  list-style: none;
 }
 </style>
